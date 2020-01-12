@@ -140,7 +140,7 @@ class Inputs extends React.Component{
                         </MDBCol>
                         <MDBCol>
                             <MDBInput 
-                                label="DeviceId"
+                                label="Device Id"
                                 icon="angle-double-right"
                                 group
                                 type="text"
@@ -166,7 +166,7 @@ class Inputs extends React.Component{
                         </MDBCol>
                         <MDBCol>
                             <MDBInput 
-                               label="GuestId"
+                               label="Guest Name"
                                icon="angle-double-right"
                                group
                                type="text"

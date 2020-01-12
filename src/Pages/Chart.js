@@ -100,6 +100,8 @@ class ChartIt extends React.Component{
         }
         document.getElementById('startB').disabled = false;
         document.getElementById('clearB').disabled = true;
+        document.getElementById('forwardB').disabled = true;
+
      i=0; 
   }
   start = ()=>{
@@ -116,6 +118,7 @@ class ChartIt extends React.Component{
         } 
         document.getElementById('startB').disabled = true;
         document.getElementById('clearB').disabled = false;
+        document.getElementById('forwardB').disabled = false;
     }
   }
 
@@ -172,7 +175,7 @@ class ChartIt extends React.Component{
                 <MDBContainer fluid className = "d-flex justify-content-around">
                 <MDBBtn gradient="peach" id='clearB'onClick={this.refresh}>Clear</MDBBtn>
                 <MDBBtn gradient="peach" id = "startB" onClick={this.start}>Start</MDBBtn>
-                <MDBBtn gradient="peach" onClick={this.tracker}>Forward</MDBBtn>
+                <MDBBtn gradient="peach" id = "forwardB" onClick={this.tracker} >Forward</MDBBtn>
                 </MDBContainer> 
             </div>
         );
