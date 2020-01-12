@@ -1,5 +1,5 @@
 import React, {Components} from 'react';
-import { MDBContainer,  MDBTable, MDBTableBody, MDBTableHead } from 'mdbreact';
+import { MDBContainer,  MDBTable, MDBTableBody, MDBTableHead, MDBBtn } from 'mdbreact';
 import {Bar} from 'react-chartjs-2';
 
 const url = 'https://raw.githubusercontent.com/EgemenAv/Projects-and-Labs/master/Murder-on-the-2nd-Floor-Raw-Data.csv'; 
@@ -57,8 +57,8 @@ class ChartIt extends React.Component{
     
    tracker = async () => {
      let vals = await getData();
-     console.log("click")
-      console.log(i);
+    
+
   if(i < vals[0].length && vals[4][i] != "n/a"){
       let list = document.getElementById(vals[4][i]);     
       while(list.childNodes.length > 1){
@@ -89,6 +89,35 @@ class ChartIt extends React.Component{
       i+=3;
     }
   }
+  refresh = ()=>{
+    
+      
+        for(let j = 0; j < 11; j++){
+            let list = document.getElementById(guests[j]);     
+            while (list.firstChild) {
+                list.removeChild(list.firstChild);
+            }
+        }
+        document.getElementById('startB').disabled = false;
+        document.getElementById('clearB').disabled = true;
+     i=0; 
+  }
+  start = ()=>{
+    
+      if(i==0){
+        for(let j = 0; j < 11; j++){
+            let list = document.getElementById(guests[j]);     
+            
+            let data1 = document.createElement("td");
+            let node1 = document.createTextNode(guests[j]);
+            data1.appendChild(node1);
+            list.appendChild(data1);
+            
+        } 
+        document.getElementById('startB').disabled = true;
+        document.getElementById('clearB').disabled = false;
+    }
+  }
 
     render(){
         return(
@@ -104,43 +133,47 @@ class ChartIt extends React.Component{
                         <th></th>
                                            
                     </MDBTableHead>
-                    <MDBTableBody>
+                    <MDBTableBody id="tbody">
                     <tr id="Veronica">
-                        <td>Veronica</td>
+                        
                     </tr>
                     <tr id="Jason">
-                        <td>Jason</td>
+                        
                     </tr>
                     <tr id="Thomas">
-                        <td>Thomas</td>
+                       
                     </tr>
                     <tr id="Rob">
-                        <td>Rob</td>
+                      
                     </tr>
                     <tr id="Kristina">
-                        <td>Kristina</td>
+                        
                     </tr>
                     <tr id="Marc-Andre">
-                        <td>Marc-Andre</td>
+                       
                     </tr>
                     <tr id="Dave">
-                        <td>Dave</td>
+                       
                     </tr>
                     <tr id="Salina">
-                        <td>Salina</td>
+                        
                     </tr>
                     <tr id="Harrison">
-                        <td>Harrison</td>
+                       
                     </tr>
                     <tr id="Alok">
-                        <td>Alok</td>
+                        
                     </tr>
                     <tr id="Eugene">
-                        <td>Eugene</td>
+                        
                     </tr>
                     </MDBTableBody>
                 </MDBTable>
-                <button id="tabler" onClick={this.tracker}>Tabler</button>
+                <MDBContainer fluid className = "d-flex justify-content-around">
+                <MDBBtn gradient="peach" id='clearB'onClick={this.refresh}>Clear</MDBBtn>
+                <MDBBtn gradient="peach" id = "startB" onClick={this.start}>Start</MDBBtn>
+                <MDBBtn gradient="peach" onClick={this.tracker}>Forward</MDBBtn>
+                </MDBContainer> 
             </div>
         );
     }

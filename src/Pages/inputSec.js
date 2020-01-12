@@ -180,7 +180,7 @@ class Inputs extends React.Component{
                     </MDBRow>
                     <MDBRow className = 'd-flex justify-content-center'>
                         <MDBCol className='d-flex justify-content-center'>
-                            <MDBBtn color="primary" onClick={this.sendForm}>Submit</MDBBtn>
+                            <MDBBtn gradient="peach" onClick={this.sendForm}>Submit</MDBBtn>
                         </MDBCol>
                     </MDBRow>
                     </div>
