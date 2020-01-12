@@ -123,6 +123,7 @@ class Inputs extends React.Component{
         return(
             <MDBRow>
                 <MDBCol>
+                <h1 className= 'tabTitle text-center mb-5'>Filter Information</h1>
                     <div className = "inputarea mb-5 p-3 ">
                     <MDBRow>
                         <MDBCol>
@@ -180,12 +181,13 @@ class Inputs extends React.Component{
                     </MDBRow>
                     <MDBRow className = 'd-flex justify-content-center'>
                         <MDBCol className='d-flex justify-content-center'>
-                            <MDBBtn gradient="peach" onClick={this.sendForm}>Submit</MDBBtn>
+                            <MDBBtn gradient="peach" onClick={this.sendForm}>Apply</MDBBtn>
                         </MDBCol>
                     </MDBRow>
                     </div>
                          
                     <div>
+                        <h2 className= 'text-center'>Result Table</h2>
                     <MDBTable scrollY className="table mt-5 h-100">
                         <MDBTableHead id="tableHead">
                             <tr>
@@ -196,7 +198,7 @@ class Inputs extends React.Component{
                             <th>GUEST ID</th>
                             </tr>
                         </MDBTableHead>
-                        <MDBTableBody id = "table1">
+                        <MDBTableBody id = "table">
                            
                         </MDBTableBody>
                         </MDBTable>
