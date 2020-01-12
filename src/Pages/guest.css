@@ -1,0 +1,23 @@
+.guestLink{
+    font-weight: 400;
+    font-size: 1.37rem;
+    font-family: 'Roboto Slab', serif;
+    color: white;
+    letter-spacing: 1px;
+    line-height: 1.6;
+    transition: 0.5s ease-in-out;
+    overflow-x: hidden;
+}
+
+.guestLink:hover a:hover{
+    color: #262626;
+    font-size:2.5rem;
+}
+
+.hrguest{
+    border-width: 3px;
+    border-color: white;
+    width: 70vw;
+    margin-top: 0;
+    margin-bottom: 0;
+}
