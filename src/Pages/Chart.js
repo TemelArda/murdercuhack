@@ -1,6 +1,5 @@
 import React, {Components} from 'react';
 import { MDBContainer,  MDBTable, MDBTableBody, MDBTableHead, MDBBtn } from 'mdbreact';
-import {Bar} from 'react-chartjs-2';
 
 const url = 'https://raw.githubusercontent.com/EgemenAv/Projects-and-Labs/master/Murder-on-the-2nd-Floor-Raw-Data.csv'; 
 

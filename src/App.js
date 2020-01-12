@@ -6,6 +6,7 @@ import InputSec from './Pages/inputSec.js';
 import GuestSec from './Pages/guestList.js';
 import Chart from "./Pages/Chart.js"
 
+
 function App() {
   
   return (
