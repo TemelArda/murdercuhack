@@ -100,7 +100,7 @@ class ChartIt extends React.Component{
         }
         document.getElementById('startB').disabled = false;
         document.getElementById('clearB').disabled = true;
-        document.getElementById('forwardB').disabled = true;
+        document.getElementById('forwardB').disabled = true; 
 
      i=0; 
   }

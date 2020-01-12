@@ -196,7 +196,7 @@ class Inputs extends React.Component{
                             <th>GUEST ID</th>
                             </tr>
                         </MDBTableHead>
-                        <MDBTableBody id = "table">
+                        <MDBTableBody id = "table1">
                            
                         </MDBTableBody>
                         </MDBTable>
