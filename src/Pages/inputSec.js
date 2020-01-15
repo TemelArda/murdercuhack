@@ -1,52 +1,76 @@
 import React from 'react';
 import { MDBContainer, MDBRow, MDBCol, MDBInput , MDBBtn, MDBTable, MDBTableBody, MDBTableHead } from 'mdbreact';
 import './Input.css'
-
-const url = 'https://raw.githubusercontent.com/EgemenAv/Projects-and-Labs/master/Murder-on-the-2nd-Floor-Raw-Data.csv';   
-
-  
-async function getData(){
-      const resp = await fetch(url);
-      let text = await resp.text();
-      
-      const ids = [];
-      const devices = [];
-      const deviceids = [];
-      const events = [];
-      const guestids = [];
-
-      let table = text.split('\n').splice(1);
-      table.pop()
+import Papa from 'papaparse';
+import file from '../data/Murder-on-the-2nd-Floor-Raw-Data.csv';
     
-      table.forEach(row=> {
-        row = row.split(",");
-        let id = row[0].substring(1, row[0].length-2);
-        ids.push(id);
-        let device = row[1].substring(1, row[1].length-1);
-        devices.push(device);
-        let deviceid = row[2].substring(1, row[2].length-1);
-        let event = row[3].substring(1, row[3].length-1);
-        let guestid = row[4].substring(1, row[4].length-2);
-        deviceids.push(deviceid);
-        events.push(event);
-        guestids.push(guestid);
 
+ 
 
-      })
+  //window.onload = () =>{getData();}
+  
+   
 
+ function getData(){
+    
+    const ids = [];
+    const devices = [];
+    const deviceids = [];
+    const events = [];
+    const guestids = []
+
+     Papa.parse(file, {
+        header: false,
+        download: true,
+        dynamicTyping: true,
+        complete:  (results) => {
+            results.data.splice(0,1);
+            results.data.pop();
+            results.data.forEach( (row) => {
+                ids.push(row[0]);
+                devices.push(row[1]);
+                deviceids.push(row[2]);
+                events.push(row[3]);
+                guestids.push(row[4]);
+            })
+        }
+    });  
+    
+    return[ids, devices, deviceids, events, guestids];
+      //let table = text.split('\n').splice(1);
       
-     return [ids, devices, deviceids, events, guestids];
+      //table.pop()
+    
+    //   table.forEach(row=> {
+    //     row = row.split(",");
+    //     let id = row[0].substring(1, row[0].length-2);
+    //     ids.push(id);
+    //     let device = row[1].substring(1, row[1].length-1);
+    //     devices.push(device);
+    //     let deviceid = row[2].substring(1, row[2].length-1);
+    //     let event = row[3].substring(1, row[3].length-1);
+    //     let guestid = row[4].substring(1, row[4].length-2);
+    //     deviceids.push(deviceid);
+    //     events.push(event);
+    //     guestids.push(guestid);
+
+
+    //  })
+
+        
 }
 
 class Inputs extends React.Component{
     constructor(){
+       
         super();
         this.state = {
             Time:"",
             Device:"",
             DeviceId:"",
             Event:"",
-            GuestId:""
+            GuestId:"",
+            val:  getData()
         }
     }
 
@@ -59,8 +83,10 @@ class Inputs extends React.Component{
       sendForm = async () => {
 
         const valueIndex = [];  
-        let vl = await getData();
-          
+        let vl = this.state.val;
+        
+       
+
         let list = document.getElementById('table');
         while(list.childNodes.length>0){
             list.removeChild(list.childNodes[0]);
@@ -81,14 +107,14 @@ class Inputs extends React.Component{
     }   
 
     async Control(valueIndex){
-        let vl = await getData();
+        let vl = this.state.val;
 
         if(valueIndex.length > 0){
             for(let i = 0 ; i < valueIndex.length; i++){   
                 var d = new Date(0);        
                 d.setUTCSeconds(vl[0][valueIndex[i]]);
                 let date = d.toString().split(" ")[4]
-                console.log(typeof d);
+                
                 let data1 = document.createElement("td");
                 let node1 = document.createTextNode(date);
                 let data2 = document.createElement("td");
@@ -114,9 +140,7 @@ class Inputs extends React.Component{
                 element.appendChild(row);    
             }
         }
-        else{
-            alert("give data"); 
-        }
+        
       }
 
     render(){

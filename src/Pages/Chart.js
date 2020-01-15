@@ -1,37 +1,34 @@
 import React, {Components} from 'react';
 import { MDBContainer,  MDBTable, MDBTableBody, MDBTableHead, MDBBtn } from 'mdbreact';
+import Papa from 'papaparse';
+import file from '../data/Murder-on-the-2nd-Floor-Raw-Data.csv';
 
-const url = 'https://raw.githubusercontent.com/EgemenAv/Projects-and-Labs/master/Murder-on-the-2nd-Floor-Raw-Data.csv'; 
 
-async function getData(){
-    const resp = await fetch(url);
-    let text = await resp.text();
-    
+ function getData(){
     const ids = [];
     const devices = [];
     const deviceids = [];
     const events = [];
-    const guestids = [];
+    const guestids = []
 
-    let table = text.split('\n').splice(1);
-    table.pop()
-  
-    table.forEach(row=> {
-      row = row.split(",");
-      let id = row[0].substring(1, row[0].length-2);
-      ids.push(id);
-      let device = row[1].substring(1, row[1].length-1);
-      devices.push(device);
-      let deviceid = row[2].substring(1, row[2].length-1);
-      let event = row[3].substring(1, row[3].length-1);
-      let guestid = row[4].substring(1, row[4].length-2);
-      deviceids.push(deviceid);
-      events.push(event);
-      guestids.push(guestid);
-    })
-
+     Papa.parse(file, {
+        header: false,
+        download: true,
+        dynamicTyping: true,
+        complete:  (results) => {
+            results.data.splice(0,1);
+            results.data.pop();
+            results.data.forEach( (row) => {
+                ids.push(row[0]);
+                devices.push(row[1]);
+                deviceids.push(row[2]);
+                events.push(row[3]);
+                guestids.push(row[4]);
+            })
+        }
+    });  
     
-   return [ids, devices, deviceids, events, guestids];
+    return[ids, devices, deviceids, events, guestids];
 }
 
  const guests = ["Jason", "Veronica", "Thomas", "Rob", "Kristina", "Marc-Andre",
@@ -42,22 +39,15 @@ class ChartIt extends React.Component{
     constructor(){
         super();
         this.state = {
-            val: 0
+            val: getData()
         }
+       
     }
-    change = e => {
-        this.setState({
-            val: e.target.value
-        });
-        console.log(e.target.value)
-    }
-
-
     
-   tracker = async () => {
-     let vals = await getData();
     
-
+   tracker = () => {
+     let vals = this.state.val;
+     
   if(i < vals[0].length && vals[4][i] != "n/a"){
       let list = document.getElementById(vals[4][i]);     
       while(list.childNodes.length > 1){
