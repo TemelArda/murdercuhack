@@ -13,7 +13,7 @@ const Guests = [
 class GuestList extends React.Component{
     render(){
         return(
-            <MDBCol md = '3' className= 'guestLink mx-3'>
+            <MDBCol size = '3' className= 'guestLink mx-3'>
                 <p><a>{this.props.guest.name}</a> <br/>  {this.props.guest.Room}</p>
             </MDBCol>
         );
@@ -23,7 +23,7 @@ class GuestList extends React.Component{
 
 function GuestSec(){
     return(
-        <MDBContainer fluid className = 'px-3 my-5'>
+        <MDBContainer fluid className = ' my-5'>
             <MDBRow className = 'd-flex justify-content-center my-5 mx-2'>
                 <GuestList guest={Guests[0]}/> 
                 <GuestList guest={Guests[1]}/> 

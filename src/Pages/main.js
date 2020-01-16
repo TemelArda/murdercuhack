@@ -5,10 +5,12 @@ import './main.css';
 
 
 
-class MainPage extends React.Component{
-    render(){
-        return(
-            <MDBRow>
+
+
+function Main(){
+    return(
+        <MDBContainer fluid className = 'main exp p-5'>
+          <MDBRow>
                 <MDBCol>
                     <div className="header text-center"> 
                         <h1 className=' title my-3'>DataEctive</h1>'
@@ -17,14 +19,6 @@ class MainPage extends React.Component{
                     </div>
                 </MDBCol>
             </MDBRow>
-        );
-    }
-}
-
-function Main(){
-    return(
-        <MDBContainer fluid className = 'main exp p-5'>
-          <MainPage/>  
         </MDBContainer>
     );
 }
